@@ -16,7 +16,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   python3-setuptools \
   python3-dev \
   libcurl4-openssl-dev \
-  libmagick++-dev
+  libmagick++-dev \
+  libcairo2-dev \
+  libpango1.0-dev \
+  libjpeg-dev \
+  libgif-dev \
+  librsvg2-dev \
+  libfontconfig-dev \
+  nodejs \
+  npm
 
 WORKDIR /app
 
@@ -26,3 +34,5 @@ RUN pipenv --python 3.8 sync
 
 COPY renv.lock renv ./
 RUN Rscript -e "install.packages('renv'); renv::restore(); torch::install_torch()"
+
+RUN npm i -g @dvcorg/cml
