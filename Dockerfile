@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   librsvg2-dev \
   libfontconfig-dev \
   nodejs \
-  npm
+  npm \
+  git
 
 WORKDIR /app
 
