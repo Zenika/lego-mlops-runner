@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   build-essential \
   r-base \
   r-base-dev \
-  python3.6 \
+  python3.8 \
   python3-pip \
   python3-setuptools \
   python3-dev \
@@ -22,7 +22,7 @@ WORKDIR /app
 
 RUN pip3 install pipenv
 COPY Pipfile Pipfile.lock ./
-RUN pipenv --three sync
+RUN pipenv --python 3.8 sync
 
 COPY renv.lock renv ./
-RUN Rscript -e "install.packages('renv'); renv::init()"
+RUN Rscript -e "install.packages('renv'); renv::restore(); torch::install_torch()"
